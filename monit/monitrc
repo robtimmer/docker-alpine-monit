@@ -1,0 +1,2 @@
+include /opt/monit/etc/conf.d/*
+include /opt/tools/conf.d/*
