@@ -16,8 +16,7 @@ RUN apk add --update gcc musl-dev make openssl-dev \
   && mkdir -p ${MONIT_HOME}/etc/conf.d ${MONIT_HOME}/log \
   && apk del gcc musl-dev make openssl-dev \
   && rm -rf /var/cache/apk/* /opt/src 
-COPY monit/monitrc ${MONIT_HOME}/etc/monitrc
-RUN chown root:root ${MONIT_HOME}/etc/monitrc && chmod 700 ${MONIT_HOME}/etc/monitrc
-COPY monit/basic ${MONIT_HOME}/etc/conf.d/basic
 
-ENTRYPOINT ["${MONIT_HOME}/bin/monit","-I"]
+ADD root /
+
+ENTRYPOINT ["/opt/monit/bin/monit","-I"]
