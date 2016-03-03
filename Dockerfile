@@ -14,6 +14,7 @@ RUN apk add --update gcc musl-dev make openssl-dev \
   && ./configure  --prefix=${MONIT_HOME} --without-pam \
   && make && make install \
   && mkdir -p ${MONIT_HOME}/etc/conf.d ${MONIT_HOME}/log \
+  && touch ${MONIT_HOME}/etc/monitrc && chmod 700 ${MONIT_HOME}/etc/monitrc \
   && apk del gcc musl-dev make openssl-dev \
   && rm -rf /var/cache/apk/* /opt/src 
 
