@@ -1,9 +1,9 @@
-FROM cf-registry.innotechapp.com/alpine-basic:0.3.3-6
-MAINTAINER Innovation Technologies <InnoTech@bbva.com>
+FROM rawmind/alpine-base:0.3.3-2
+MAINTAINER Raul Sanchez <rawmind@gmail.com>
 
 # Compile and install monit and confd
 ENV MONIT_VERSION=5.16 \
-    MONIT_HOME=/opt/monit \
+    MONIT_HOME=/opt/monit
     PATH=$PATH:/opt/monit/bin
 
 # Compile and install monit
