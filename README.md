@@ -16,9 +16,7 @@ This image compiles and intall [monit][monit] under /opt/monit, to make it super
 
 ## Versions
 
-- `0.3.3` [(Dockerfile)](https://github.com/rawmind0/docker-alpine/blob/master/alpine-base/Dockerfile)
-
-[See VERSIONS.md for image contents.](https://github.com/rawmind0/docker-alpine/blob/master/alpine-base/VERSIONS.md)
+- `0.3.3` [(Dockerfile)](https://github.com/rawmind0/alpine-monit/blob/master/Dockerfile)
 
 ## Usage
 
