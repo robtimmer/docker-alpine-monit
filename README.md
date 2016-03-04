@@ -1,12 +1,12 @@
 alpine-monit
 =============
 
-A base image to run anything. It's based in alpine-basic, adding monit as process management
+A base image to run anything. It's based in alpine-base, adding monit as process management
 
-##Build
+## Build
 
 ```
-docker build -t <repo>/alpine-monit:<version> .
+docker build -t rawmind/alpine-monit:<version> .
 ```
 
 ## Process management
@@ -16,7 +16,9 @@ This image compiles and intall [monit][monit] under /opt/monit, to make it super
 
 ## Versions
 
-- `0.3.3` [(Dockerfile)](https://github.com/rawmind0/alpine-monit/blob/master/Dockerfile)
+- `0.3.3` [(Dockerfile)](https://github.com/rawmind0/docker-alpine/blob/master/alpine-base/Dockerfile)
+
+[See VERSIONS.md for image contents.](https://github.com/rawmind0/docker-alpine/blob/master/alpine-base/VERSIONS.md)
 
 ## Usage
 
