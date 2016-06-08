@@ -29,6 +29,7 @@ To start your service using monit:
 
 - create a monit conf file in `/opt/monit/etc/conf.d`
 - create a service script that allow start, stop and restart function
+- Implement serviceLog function if you want that your service log will be writed to docker logs command.
 - example monit and script files:
 
 monit conf
@@ -51,6 +52,11 @@ function log {
         echo `date` $ME - $@
 }
 
+function serviceLog {
+    log "[ Redirecting ${SERVICE_NAME} log... ]"
+    ln -sf /proc/1/fd/1 <service log file>
+}
+
 function serviceStart {
     log "[ Starting ${SERVICE_NAME}... ]"
     <commands to start service>
@@ -69,6 +75,7 @@ function serviceRestart {
 
 case "$1" in
         "start")
+            serviceLog
             serviceStart
         ;;
         "stop")
