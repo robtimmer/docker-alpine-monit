@@ -1,7 +1,7 @@
 alpine-monit
 =============
 
-A base image to run anything. It's based in alpine-base, adding monit as process management
+A base image to run anything. It's based in [alpine-base][alpine-base], adding monit as process management
 
 ## Build
 
@@ -13,12 +13,13 @@ docker build -t rawmind/alpine-monit:<version> .
 
 This image compiles and intall [monit][monit] under /opt/monit, to make it super simple to start multiple process and manage them correctly.
 
+Starts automatically all services conf files that would be copied in /opt/monit/etc/conf.d or /opt/tools/monit/conf.d
+
 
 ## Versions
 
-- `0.3.3` [(Dockerfile)](https://github.com/rawmind0/docker-alpine/blob/master/alpine-base/Dockerfile)
-
-[See VERSIONS.md for image contents.](https://github.com/rawmind0/docker-alpine/blob/master/alpine-base/VERSIONS.md)
+- `0.5.18` [(Dockerfile)](https://github.com/rawmind0/docker-alpine/blob/0.5.18/alpine-monit/Dockerfile) Monit version 5.18
+- `0.3.3-2` [(Dockerfile)](https://github.com/rawmind0/docker-alpine/blob/0.3.3-2/alpine-base/Dockerfile) Monit version 5.16
 
 ## Usage
 
@@ -85,6 +86,8 @@ esac
 
 ## Examples
 
-An example of using this image can be found in the [rawmind/alpine-zk][alpine-zk].
+An example of using this image can be found in the [alpine-zk][alpine-zk].
 
 [monit]: https://mmonit.com/monit/
+[alpine-base]: https://github.com/rawmind0/alpine-base/
+[alpine-zk]: https://github.com/rawmind0/alpine-zk

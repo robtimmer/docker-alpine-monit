@@ -2,7 +2,7 @@ FROM rawmind/alpine-base:0.3.3-3
 MAINTAINER Raul Sanchez <rawmind@gmail.com>
 
 # Compile and install monit and confd
-ENV MONIT_VERSION=5.16 \
+ENV MONIT_VERSION=5.18 \
     MONIT_HOME=/opt/monit \
     PATH=$PATH:/opt/monit/bin
 
@@ -19,4 +19,4 @@ RUN apk add --update gcc musl-dev make openssl-dev \
 ADD root /
 RUN chmod 700 ${MONIT_HOME}/etc/monitrc 
 
-ENTRYPOINT ["/opt/monit/bin/monit","-I"]
+ENTRYPOINT ["/opt/monit/bin/monit","-Iv"]
