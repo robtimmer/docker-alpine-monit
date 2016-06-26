@@ -1,0 +1,1 @@
+/opt/monit/bin/monit -Iv
