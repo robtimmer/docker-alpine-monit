@@ -20,4 +20,4 @@ ADD root /
 RUN chmod 700 ${MONIT_HOME}/etc/monitrc \
   && chmod +x /opt/monit/bin/monit-start.sh
 
-CMD ["/opt/monit/bin/monit-start.sh"]
+ENTRYPOINT ["/bin/bash","-c","/opt/monit/bin/monit-start.sh"]
