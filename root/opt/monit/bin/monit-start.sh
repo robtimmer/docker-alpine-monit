@@ -1,1 +1,1 @@
-/opt/monit/bin/monit -Iv
+/opt/monit/bin/monit -I
