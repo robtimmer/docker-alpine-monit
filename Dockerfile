@@ -4,6 +4,7 @@ MAINTAINER Raul Sanchez <rawmind@gmail.com>
 # Compile and install monit and confd
 ENV MONIT_VERSION=5.18 \
     MONIT_HOME=/opt/monit \
+    SERVICE_VOLUME=/opt/tools \
     PATH=$PATH:/opt/monit/bin
 
 # Compile and install monit
