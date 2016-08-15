@@ -2,23 +2,24 @@ FROM rawmind/alpine-base:0.3.4-1
 MAINTAINER Raul Sanchez <rawmind@gmail.com>
 
 # Compile and install monit and confd
-ENV MONIT_VERSION=5.18 \
+ENV MONIT_VERSION=5.19.0 \
     MONIT_HOME=/opt/monit \
+    MONIT_URL=https://mmonit.com/monit/dist \
     SERVICE_VOLUME=/opt/tools \
     PATH=$PATH:/opt/monit/bin
 
 # Compile and install monit
-RUN apk add --update gcc musl-dev make openssl-dev \
-  && mkdir -p /opt/src; cd /opt/src \
-  && curl -sS https://mmonit.com/monit/dist/monit-${MONIT_VERSION}.tar.gz | gunzip -c - | tar -xf - \
-  && cd /opt/src/monit-${MONIT_VERSION} \
-  && ./configure  --prefix=${MONIT_HOME} --without-pam \
-  && make && make install \
-  && mkdir -p ${MONIT_HOME}/etc/conf.d ${MONIT_HOME}/log \
-  && apk del gcc musl-dev make openssl-dev \
-  && rm -rf /var/cache/apk/* /opt/src 
+RUN apk add --update gcc musl-dev make openssl-dev && \
+    mkdir -p /opt/src; cd /opt/src && \
+    curl -sS ${MONIT_URL}/monit-${MONIT_VERSION}.tar.gz | gunzip -c - | tar -xf - && \
+    cd /opt/src/monit-${MONIT_VERSION} && \
+    ./configure  --prefix=${MONIT_HOME} --without-pam && \
+    make && make install && \
+    mkdir -p ${MONIT_HOME}/etc/conf.d ${MONIT_HOME}/log && \
+    apk del gcc musl-dev make openssl-dev &&\
+    rm -rf /var/cache/apk/* /opt/src 
 ADD root /
-RUN chmod 700 ${MONIT_HOME}/etc/monitrc \
-  && chmod +x /opt/monit/bin/monit-start.sh
+RUN chmod 700 ${MONIT_HOME}/etc/monitrc && \
+    chmod +x ${MONIT_HOME}/bin/monit-start.sh
 
-ENTRYPOINT ["/bin/bash","-c","/opt/monit/bin/monit-start.sh"]
+ENTRYPOINT ["/bin/bash","-c","${MONIT_HOME}/bin/monit-start.sh"]
