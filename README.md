@@ -13,13 +13,31 @@ docker build -t rawmind/alpine-monit:<version> .
 
 This image compiles and intall [monit][monit] under /opt/monit, to make it super simple to start multiple process and manage them correctly.
 
-Starts automatically all services conf files that would be copied in /opt/monit/etc/conf.d or /opt/tools/monit/conf.d
+Starts automatically all services conf files that would be copied in /opt/monit/etc/conf.d or /opt/tools/monit/conf.d (*)
+
+* if you mount a SERVICE_VOLUME at /opt/tools in this container. 
 
 
 ## Versions
 
+- `0.5.19` [(Dockerfile)](https://github.com/rawmind0/docker-alpine/blob/0.5.19/alpine-monit/Dockerfile) Monit version 5.18
 - `0.5.18-6` [(Dockerfile)](https://github.com/rawmind0/docker-alpine/blob/0.5.18-6/alpine-monit/Dockerfile) Monit version 5.18
 - `0.3.3-2` [(Dockerfile)](https://github.com/rawmind0/docker-alpine/blob/0.3.3-2/alpine-base/Dockerfile) Monit version 5.16
+
+## Configuration
+
+This image runs [monit][monit] in foreground.
+
+Besides, you can customize the configuration in several ways:
+
+### Default Configuration
+
+Monit is installed with the default configuration and some parameters can be overrided with env variables:
+
+- MONIT_PORT="2812"             # Port to listen monit httpd service
+- MONIT_ALLOW="localhost"       # Rule to allow connections to the httpd port
+- MONIT_ARGS="-I"               # Monit exec args
+- SERVICE_VOLUME="/opt/tools"   # Optiona volume to get service tools.To know more look at [alpine-tools][alpine-tools]
 
 ## Usage
 
@@ -93,8 +111,10 @@ esac
 
 ## Examples
 
-An example of using this image can be found in the [alpine-zk][alpine-zk].
+Examples of using this image can be found at [alpine-zk][alpine-zk] or at [alpine-kafka][alpine-kafka].
 
 [monit]: https://mmonit.com/monit/
 [alpine-base]: https://github.com/rawmind0/alpine-base/
 [alpine-zk]: https://github.com/rawmind0/alpine-zk
+[alpine-kafka]: https://github.com/rawmind0/alpine-kafka
+[alpine-tools]: https://github.com/rawmind0/alpine-tools
