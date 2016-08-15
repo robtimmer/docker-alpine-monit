@@ -6,17 +6,19 @@ if [ -d "${SERVICE_VOLUME}" ]; then
 		sleep 5
 	done
 
-	cat << EOF > ${MONIT_HOME}/etc/conf.d/monitrc
+	cat << EOF > ${MONIT_HOME}/etc/monitrc
 include ${SERVICE_VOLUME}/monit/conf.d/*
 include ${MONIT_HOME}/etc/conf.d/*
 EOF
 
 else
-	cat << EOF > ${MONIT_HOME}/etc/conf.d/monitrc
+	cat << EOF > ${MONIT_HOME}/etc/monitrc
 include ${MONIT_HOME}/etc/conf.d/*
 EOF
 
 fi
+
+chmod 700 ${MONIT_HOME}/etc/monitrc
 
 MONIT_PORT=${MONIT_PORT:-"2812"}
 MONIT_ALLOW=${MONIT_ALLOW:-"localhost"}

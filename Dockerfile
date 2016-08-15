@@ -19,7 +19,6 @@ RUN apk add --update gcc musl-dev make openssl-dev && \
     apk del gcc musl-dev make openssl-dev &&\
     rm -rf /var/cache/apk/* /opt/src 
 ADD root /
-RUN chmod 700 ${MONIT_HOME}/etc/monitrc && \
-    chmod +x ${MONIT_HOME}/bin/monit-start.sh
+RUN chmod +x ${MONIT_HOME}/bin/monit-start.sh
 
 ENTRYPOINT ["/bin/bash","-c","${MONIT_HOME}/bin/monit-start.sh"]
