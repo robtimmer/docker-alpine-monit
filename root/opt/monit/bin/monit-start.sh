@@ -32,4 +32,7 @@ set httpd port ${MONIT_PORT}
     allow ${MONIT_ALLOW}
 EOF
 
-exec ${MONIT_HOME}/bin/monit ${MONIT_ARGS}
+trap 'kill -SIGTERM $PID; wait $PID' SIGTERM SIGINT
+${MONIT_HOME}/bin/monit ${MONIT_ARGS}
+PID=$!
+wait $PID
