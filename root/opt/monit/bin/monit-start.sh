@@ -27,12 +27,21 @@ MONIT_ARGS=${MONIT_ARGS:-"-I"}
 cat << EOF > ${MONIT_HOME}/etc/conf.d/basic
 set daemon 60
 set logfile ${MONIT_HOME}/log/monit.log
+set pidfile ${MONIT_HOME}/log/monit.pid
+set statefile ${MONIT_HOME}/log/monit.state
 
 set httpd port ${MONIT_PORT} 
     allow ${MONIT_ALLOW}
 EOF
 
-trap 'kill -SIGTERM $PID; wait $PID' SIGTERM SIGINT
-${MONIT_HOME}/bin/monit ${MONIT_ARGS}
+for i in "${MONIT_HOME}/log/monit.pid ${MONIT_HOME}/log/monit.state" 
+do
+	if [ -e "$i" ]; then
+		rm "$i"
+	fi
+done
+
+trap 'kill -SIGTERM $PID' SIGTERM SIGINT
+${MONIT_HOME}/bin/monit ${MONIT_ARGS} &
 PID=$!
 wait $PID
