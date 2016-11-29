@@ -34,7 +34,7 @@ set httpd port ${MONIT_PORT}
     allow ${MONIT_ALLOW}
 EOF
 
-for i in "${MONIT_HOME}/log/monit.pid ${MONIT_HOME}/log/monit.state" 
+for i in ${MONIT_HOME}/log/monit.pid ${MONIT_HOME}/log/monit.state
 do
 	if [ -e "$i" ]; then
 		rm "$i"
