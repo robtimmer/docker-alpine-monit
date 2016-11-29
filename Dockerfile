@@ -2,7 +2,7 @@ FROM rawmind/alpine-base:0.3.4-1
 MAINTAINER Raul Sanchez <rawmind@gmail.com>
 
 # Compile and install monit and confd
-ENV MONIT_VERSION=5.19.0 \
+ENV MONIT_VERSION=5.20.0 \
     MONIT_HOME=/opt/monit \
     MONIT_URL=https://mmonit.com/monit/dist \
     SERVICE_VOLUME=/opt/tools \
