@@ -42,7 +42,7 @@ do
 	fi
 done
 
-trap 'kill -SIGTERM $PID' SIGTERM SIGINT
+trap 'echo "Stopping monit with pid [$PID]"; kill -SIGTERM $PID; wait $PID' SIGTERM SIGINT
 ${MONIT_HOME}/bin/monit ${MONIT_ARGS} &
 PID=$!
 wait $PID
