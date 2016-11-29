@@ -37,6 +37,7 @@ EOF
 for i in ${MONIT_HOME}/log/monit.pid ${MONIT_HOME}/log/monit.state
 do
 	if [ -e "$i" ]; then
+		echo "Removing $i"
 		rm "$i"
 	fi
 done
