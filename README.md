@@ -1,29 +1,13 @@
 alpine-monit
 =============
 
-A base image to run anything. It's based in [alpine-base][alpine-base], adding monit as process management
-
-## Build
-
-```
-docker build -t rawmind/alpine-monit:<version> .
-```
-
 ## Process management
 
-This image compiles and intall [monit][monit] under /opt/monit, to make it super simple to start multiple process and manage them correctly.
+This image compiles and install [monit][monit] under /opt/monit, to make it super simple to start multiple process and manage them correctly.
 
 Starts automatically all services conf files that would be copied in /opt/monit/etc/conf.d or /opt/tools/monit/conf.d (*)
 
 * if you mount a SERVICE_VOLUME at /opt/tools in this container. 
-
-
-## Versions
-
-- `0.5.20-4` [(Dockerfile)](https://github.com/rawmind0/docker-alpine/blob/0.5.20-4/alpine-monit/Dockerfile) Monit version 5.20
-- `0.5.19-2` [(Dockerfile)](https://github.com/rawmind0/docker-alpine/blob/0.5.19-2/alpine-monit/Dockerfile) Monit version 5.19
-- `0.5.18-6` [(Dockerfile)](https://github.com/rawmind0/docker-alpine/blob/0.5.18-6/alpine-monit/Dockerfile) Monit version 5.18
-- `0.3.3-2` [(Dockerfile)](https://github.com/rawmind0/docker-alpine/blob/0.3.3-2/alpine-base/Dockerfile) Monit version 5.16
 
 ## Configuration
 
@@ -42,7 +26,7 @@ Monit is installed with the default configuration and some parameters can be ove
 
 ## Usage
 
-To use this image include `FROM rawmind/alpine-monit` at the top of your `Dockerfile`. Starting from `rawmind/alpine-monit` provides you with the ability to easily start any service using monit. monit will also keep it running for you, restarting it when it crashes.
+To use this image include `FROM robtimmer/alpine-monit` at the top of your `Dockerfile`. Starting from `robtimmer/alpine-monit` provides you with the ability to easily start any service using monit. monit will also keep it running for you, restarting it when it crashes.
 
 To start your service using monit:
 
@@ -108,14 +92,3 @@ case "$1" in
 
 esac
 ```
-
-
-## Examples
-
-Examples of using this image can be found at [alpine-zk][alpine-zk] or at [alpine-kafka][alpine-kafka].
-
-[monit]: https://mmonit.com/monit/
-[alpine-base]: https://github.com/rawmind0/alpine-base/
-[alpine-zk]: https://github.com/rawmind0/alpine-zk
-[alpine-kafka]: https://github.com/rawmind0/alpine-kafka
-[alpine-tools]: https://github.com/rawmind0/alpine-tools
