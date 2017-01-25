@@ -1,5 +1,7 @@
-FROM rawmind/alpine-base:3.5-1
-MAINTAINER Raul Sanchez <rawmind@gmail.com>
+# Use base image
+FROM robtimmer/alpine-base
+# Set maintainer
+MAINTAINER Rob Timmer <rob@robtimmer.com>
 
 # Compile and install monit and confd
 ENV MONIT_VERSION=5.20.0 \
@@ -19,6 +21,9 @@ RUN apk add --update gcc musl-dev make libressl-dev file zlib-dev && \
     apk del gcc musl-dev make libressl-dev file zlib-dev &&\
     rm -rf /var/cache/apk/* /opt/src 
 ADD root /
+
+# Set execute permissions
 RUN chmod +x ${MONIT_HOME}/bin/monit-start.sh
 
+# Set entrypoint
 ENTRYPOINT ["/bin/bash","-c","${MONIT_HOME}/bin/monit-start.sh"]
