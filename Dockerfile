@@ -19,7 +19,9 @@ RUN apk add --update gcc musl-dev make libressl-dev file zlib-dev && \
     make && make install && \
     mkdir -p ${MONIT_HOME}/etc/conf.d ${MONIT_HOME}/log && \
     apk del gcc musl-dev make libressl-dev file zlib-dev &&\
-    rm -rf /var/cache/apk/* /opt/src 
+    rm -rf /var/cache/apk/* /opt/src
+
+# Add root files to the image root
 ADD root /
 
 # Set execute permissions
