@@ -3,7 +3,7 @@ alpine-monit
 
 ## Process management
 
-This image compiles and install monit under /opt/monit, to make it super simple to start multiple process and manage them correctly.
+This image compiles and install [monit][monit] under /opt/monit, to make it super simple to start multiple process and manage them correctly.
 
 Starts automatically all services conf files that would be copied in /opt/monit/etc/conf.d or /opt/tools/monit/conf.d (*)
 
@@ -38,9 +38,9 @@ To start your service using monit:
 monit conf
 ```
 check process <service> with pidfile <service-pid-file>
-  start program = "<path>/service.sh start"
-  stop program = "<path>/service.sh stop"
-  if failed port <port> type tcp then restart
+start program = "<path>/service.sh start"
+stop program = "<path>/service.sh stop"
+if failed port <port> type tcp then restart
 ```
 
 service script
@@ -52,43 +52,43 @@ SERVICE_HOME=${SERVICE_HOME:-"<service-home>"}
 SERVICE_CONF=${SERVICE_CONF:-"0"}
 
 function log {
-        echo `date` $ME - $@
+echo `date` $ME - $@
 }
 
 function serviceLog {
-    log "[ Redirecting ${SERVICE_NAME} log... ]"
-    ln -sf /proc/1/fd/1 <service log file>
+log "[ Redirecting ${SERVICE_NAME} log... ]"
+ln -sf /proc/1/fd/1 <service log file>
 }
 
 function serviceStart {
-    log "[ Starting ${SERVICE_NAME}... ]"
-    <commands to start service>
+log "[ Starting ${SERVICE_NAME}... ]"
+<commands to start service>
 }
 
 function serviceStop {
-    log "[ Stoping ${SERVICE_NAME}... ]"
-    <commands to stop service>
+log "[ Stoping ${SERVICE_NAME}... ]"
+<commands to stop service>
 }
 
 function serviceRestart {
-    log "[ Restarting ${SERVICE_NAME}... ]"
-    serviceStop
-    serviceStart
+log "[ Restarting ${SERVICE_NAME}... ]"
+serviceStop
+serviceStart
 }
 
 case "$1" in
-        "start")
-            serviceLog
-            serviceStart
-        ;;
-        "stop")
-            serviceStop
-        ;;
-        "restart")
-            serviceRestart
-        ;;
-        *) echo "Usage: $0 restart|start|stop"
-        ;;
+"start")
+serviceLog
+serviceStart
+;;
+"stop")
+serviceStop
+;;
+"restart")
+serviceRestart
+;;
+*) echo "Usage: $0 restart|start|stop"
+;;
 
 esac
 ```
