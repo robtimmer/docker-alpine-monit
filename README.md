@@ -3,7 +3,7 @@ alpine-monit
 
 ## Process management
 
-This image compiles and install [monit][monit] under /opt/monit, to make it super simple to start multiple process and manage them correctly.
+This image compiles and install monit under /opt/monit, to make it super simple to start multiple process and manage them correctly.
 
 Starts automatically all services conf files that would be copied in /opt/monit/etc/conf.d or /opt/tools/monit/conf.d (*)
 
@@ -92,3 +92,6 @@ case "$1" in
 
 esac
 ```
+
+[monit]: https://mmonit.com/monit/
+[alpine-tools]: https://github.com/rawmind0/alpine-tools
